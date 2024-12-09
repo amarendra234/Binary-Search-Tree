@@ -1,0 +1,34 @@
+class Solution {
+    // returns the inorder successor of the Node x in BST (rooted at 'root')
+    Node currnode;
+    public int inorderSuccessor(Node root, Node x) {
+      currnode=null;
+      Node greaternode=null;
+      while(root!=null){
+          if(root.data>x.data){
+              greaternode=root;
+              root=root.left;
+              
+          }else if(root.data<x.data){
+              root=root.right;
+          }else{
+              currnode=root;
+              break;
+          }
+      }
+      int ans=-1;
+      if(currnode.right!=null){
+          Node temp=currnode.right;
+          while(temp!=null){
+              ans=temp.data;
+              temp=temp.left;
+          }
+      }
+      if(ans==-1){
+          if(greaternode!=null){
+             ans=greaternode.data;
+          }
+      }
+      return ans;
+    }
+}
