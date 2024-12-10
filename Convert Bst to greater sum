@@ -1,0 +1,17 @@
+int sum;
+void Inorder(TreeNode<int>* root){
+       if(root==NULL){
+           return;
+       }
+       Inorder(root->right);
+       int pre=root->val;
+       root->val=sum;
+       sum+=pre;
+       Inorder(root->left);
+}
+TreeNode<int> *convertBstToGreaterSum(TreeNode<int> *root)
+{
+   sum=0;
+   Inorder(root);
+   return root;
+}
